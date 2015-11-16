@@ -5,6 +5,11 @@ Dive into a colourful and engaging world, discovering some of the most exciting 
 Topics range from fractals to infinity, prime numbers, game theory, group theory and quantum mechanics. Mathematics has never been so colourful.
 
 
+## Contributing
+
+Corrections, improvements and additions are always welcome. Simply fork this repo and send us a pull request, or email dev@mathigon.org. We are currently working on more detailed guidelines and documentations how to create new textbook chapters.
+
+
 ## Awards
 
 * [2015 Webby Awards Nominee](http://www.webbyawards.com/winners/2015/websites/general-website/education/mathigon/)
@@ -13,7 +18,7 @@ Topics range from fractals to infinity, prime numbers, game theory, group theory
 
 ## Credits
 
-Created by Philipp Legner.
-(c) Mathigon, 2015
+Created by Philipp Legner.  
+&copy; Mathigon, 2015
 
 For more details, see http://world.mathigon.org/Credits
