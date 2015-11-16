@@ -701,6 +701,10 @@ article.load = function( url ){
         if (xhr.status == 200) {
             var doc = document.implementation.createHTMLDocument("example");
             doc.documentElement.innerHTML = xhr.responseText;
+            
+            var ad = doc.getElementsByClassName('ad-box')[0];
+            ad.parentNode.removeChild(ad);
+
             abox.appendChild( document.adoptNode(doc.getElementsByClassName('tBody')[0]) );
         } else {
             var msg = "<p>Unfortunately we were not able to load " + url + ". This  could be because you entered a wrong url or because the link you followed is broken.";

@@ -4,3 +4,4 @@ logs
 build
 into-git
 node_modules
+.ftppass
