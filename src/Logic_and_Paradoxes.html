@@ -1,0 +1,555 @@
+<!--(bake templates/top.html title="Logic and Paradoxes" description="Logic and Paradoxes" id="Logic_and_Paradoxes")-->
+
+<h2>Introduction</h2>
+
+<p>While &#8220;logic&#8221; may simply refer to valid reasoning in everyday life, it is also one of the oldest and most foundational branches of mathematics, often blurring the boundaries between mathematics and philosophy.</p>
+
+<p>Logic is the study of <em>Truth</em> and how we can obtain universal Truths trough mathematical deduction. It is the most basic language of mathematics, and the underlying principle of <a href="Axioms_and_Proof">proof</a>.</p>
+
+<table width="95%" class="tableFixed">
+  <tr>
+    <td><img src="resources/Logic_and_Paradoxes/Aristotle.jpg" width="180" height="240" alt="Aristotle"></td>
+    <td><img src="resources/Logic_and_Paradoxes/Chrysippos.jpg" width="180" height="240" alt="Chrysippus of Soli"></td>
+    <td><img src="resources/Logic_and_Paradoxes/Leibnitz.jpg" width="180" height="240" alt="Gottfried Wilhelm Leibniz"></td>
+    <td><img src="resources/Logic_and_Paradoxes/Russell.jpg" width="180" height="240" alt="Bertrand Russell"></td>
+  </tr>
+  <tr>
+    <td class="caption td_caption_small">Aristotle<br>384 &#8211; 322 BC</td>
+    <td class="caption td_caption_small">Chrysippus of Soli<br>c. 279 &#8211; 206 BC</td>
+    <td class="caption td_caption_small">Gottfried Wilhelm Leibniz<br>1646  &#8211; 1716</td>
+    <td class="caption td_caption_small">Bertrand Russell<br>1872  &#8211; 1970</td>
+  </tr>
+</table>
+
+<p>Mathematical logic and reasoning dates back many thousand years, to ancient Egyptian architects and Babylonian astronomers. Logical thinking also developed independently in India and China.</p>
+
+<div class="lbox"><img src="resources/Logic_and_Paradoxes/document.jpg" width="320" height="240"/></div>
+
+<p>Centuries later, a variety of groups of Greek mathematicians and philosophers were discussing the nature of <em>truth</em>, trying to develop a formal system of mathematical logic and deduction. The ideas of Plato, Aristotle and many others carried through the Middle Ages, and were revived by scholars like Saint Thomas Aquinas and various Arabic mathematicians.</p>
+<p>Gottfried Leibniz was one of the first mathematicians to symbolic language for logic, similar to what we use today. Since then, logic has become closely entwined with concepts like <a href="Axioms_and_Proof">axioms and proof</a>, <a href="Infinity">infinity</a>, or <a href="Real_Irrational_Imaginary">number sets</a>.</p>
+
+
+<h2>Propositional Calculus</h2>
+
+<p>There are many examples of mathematical statements or <em>propositions</em>. For example, <span class="prop">1 + 2 = 3</span> and <span class="prop">4 is even</span> are clearly <strong>true</strong>, while <span class="prop">all prime numbers are even</span> is <strong>false</strong>. In logic we are often not interested in these statements themself, but how true and false statements are related to each other. Therefore we represent the propositions simply by placeholders like <span class="prop">P</span> and <span class="prop">Q</span>. All these propositions have to be either true (<strong class="green">T</strong>) or false (<strong class="red">F</strong>).</p>
+
+<p>If we have two propositions, <span class="prop">P</span> and <span class="prop">Q</span>, we can form a third one <span class="prop">P &and; Q</span>. The small wedge means <strong>and</strong>, and <span class="prop">P &and; Q</span> is only true if both <span class="prop">P</span> and <span class="prop">Q</span> are true. This relationship can be represented in a <strong>truth table</strong>, where we can look up the value of <span class="prop">P &and; Q</span> given the values of <span class="prop">P</span> and <span class="prop">Q</span>. There are four possibilities:</p>
+
+<table width="200" class="truthTable">
+  <tr><td><span class="prop">P</span><td><span class="prop">Q</span><td><span class="prop">P &and; Q</span>
+  <tr><td><strong class="green">T</strong><td><strong class="green">T</strong><td><strong class="green">T</strong>
+  <tr><td><strong class="green">T</strong><td><strong class="red">F</strong><td><strong class="red">F</strong>
+  <tr><td><strong class="red">F</strong><td><strong class="green">T</strong><td><strong class="red">F</strong>
+  <tr><td><strong class="red">F</strong><td><strong class="red">F</strong><td><strong class="red">F</strong>
+</table>
+
+<p>Similarly, the proposition <span class="prop">P &or; Q</span> is true if either one or both of the conditions <span class="prop">P</span> and <span class="prop">Q</span> are true. The upside-down wedge means <strong>or</strong>, and here the corresponding truth table:</p>
+
+<table width="200" class="truthTable">
+  <tr><td><span class="prop">P</span><td><span class="prop">Q</span><td><span class="prop">P &or; Q</span>
+  <tr><td><strong class="green">T</strong><td><strong class="green">T</strong><td><strong class="green">T</strong>
+  <tr><td><strong class="green">T</strong><td><strong class="red">F</strong><td><strong class="green">T</strong>
+  <tr><td><strong class="red">F</strong><td><strong class="green">T</strong><td><strong class="green">T</strong>
+  <tr><td><strong class="red">F</strong><td><strong class="red">F</strong><td><strong class="red">F</strong>
+</table>
+
+<p style="margin-bottom: 0;">Other operations which can be applied to logical propositions are <strong>equality</strong>, <span class="prop">P &equiv; Q</span>, which is true if both operands have the same value (both true or both false), as well as <strong>exclusive or</strong>, <span class="prop">P &oplus; Q</span>, which is true if one but not both of the operands are true:</p>
+
+<div class="lhalf">
+<table width="200" class="truthTable">
+  <tr><td><span class="prop">P</span><td><span class="prop">Q</span><td><span class="prop">P &equiv; Q</span>
+  <tr><td><strong class="green">T</strong><td><strong class="green">T</strong><td><strong class="green">T</strong>
+  <tr><td><strong class="green">T</strong><td><strong class="red">F</strong><td><strong class="red">F</strong>
+  <tr><td><strong class="red">F</strong><td><strong class="green">T</strong><td><strong class="red">F</strong>
+  <tr><td><strong class="red">F</strong><td><strong class="red">F</strong><td><strong class="green">T</strong>
+</table>
+</div>
+
+<div class="rhalf">
+<table width="200" class="truthTable">
+  <tr><td><span class="prop">P</span><td><span class="prop">Q</span><td><span class="prop">P &oplus; Q</span>
+  <tr><td><strong class="green">T</strong><td><strong class="green">T</strong><td><strong class="red">F</strong>
+  <tr><td><strong class="green">T</strong><td><strong class="red">F</strong><td><strong class="green">T</strong>
+  <tr><td><strong class="red">F</strong><td><strong class="green">T</strong><td><strong class="green">T</strong>
+  <tr><td><strong class="red">F</strong><td><strong class="red">F</strong><td><strong class="red">F</strong>
+</table>
+</div>
+
+<div class="clear"></div>
+
+<p>Finally there is the <strong>implication</strong> <span class="prop">P <img src="resources/Logic_and_Paradoxes/imply.png" width="16" height="12" alt="->"  style="margin-top: -4px;"/> Q</span>. A false proposition <span class="prop">P</span> can imply anything, but a true proposition <span class="prop">P</span> can only imply another true proposition <span class="prop">Q</span>. Note that, unlike all the operations above, the implication is not symmetric: we can&rsquo;t just swap <span class="prop">P</span> and <span class="prop">Q</span>.</p>
+
+<table width="200" class="truthTable">
+  <tr><td><span class="prop">P</span><td><span class="prop">Q</span><td><span class="prop">P &oplus; Q</span>
+  <tr><td><strong class="green">T</strong><td><strong class="green">T</strong><td><strong class="green">T</strong>
+  <tr><td><strong class="green">T</strong><td><strong class="red">F</strong><td><strong class="red">F</strong>
+  <tr><td><strong class="red">F</strong><td><strong class="green">T</strong><td><strong class="green">T</strong>
+  <tr><td><strong class="red">F</strong><td><strong class="red">F</strong><td><strong class="green">T</strong>
+</table>
+
+<p>It is also possible to swap the value of a proposition, using the <strong>not</strong> operator &#172;. For example, if <span class="prop">P</span> is true then <span class="prop">&#172;P</span> is false. Applying the not operator twice gives us <span class="prop">P</span> = <span class="prop">&#172;&#172;P</span>.</p>
+
+<hr/>
+
+<p>Having defined the varios logical operators, we can now combine them to form more complex expressions. For example, <span class="prop">A &and; (B &or; C)</span> is true if <span class="prop">A</span> is true and at least one of <span class="prop">B</span> and <span class="prop">C</span> is true. <span style="opacity: 0.4">Notice that we need parenthesis, because <span class="prop">A &and; (B &or; C)</span> can have different values than <span class="prop">(A &and; B) &or; C</span>!</span></p>
+
+<p>We can combine logical operators in the same way we are used from the arithmetic operators +, &#8211;, &times; and &divide;. Together, the logical operators form a new kind of <em>algebra</em>, called <strong>Boolean algebra</strong>, named after mathematician George Boole (1815 &#8211; 1864).</p>
+
+<p>Many of the rules we know from <em>elementary algebra</em> translate into Boolean algebra:</p>
+
+<table class="tableFixed">
+  <tr class="td_bottom tdLight">
+    <td><span class="prop">X &or; (Y &or; Z)</span> = <span class="prop">(X &or; Y) &or; Z</span></td>
+    <td><em>x</em> + (<em>y</em> + <em>x</em>) = (<em>x</em> + <em>y</em>) + <em>z</em></td>
+  </tr>
+  <tr class="td_bottom tdLight">
+    <td><span class="prop">X &and; (Y &and; Z)</span> = <span class="prop">(X &and; Y) &and; Z</span></td>
+    <td><em>x</em> &times; (<em>y</em> &times; <em>x</em>) = (<em>x</em> &times; <em>y</em>) &times; <em>z</em></td>
+  </tr>
+  <tr>
+    <td><span class="prop">X &and; (Y &or; Z)</span> = <span class="prop">(X &and; Y) &or; (X &and; Z)</span></td>
+    <td><em>x</em> &times; (<em>y</em> + <em>z</em>) = <em>x</em> &times; <em>y</em> + <em>x</em> &times; <em>z</em></td>
+  </tr>
+</table>
+
+
+<h2>Of Knights and Knaves</h2>
+
+<div class="rbox"><img src="resources/Logic_and_Paradoxes/Carroll.jpg" width="180" height="220" class="shadow"/>
+<p class="caption">Lewis Carroll (aka Charles<br>Lutwidge Dodgson, 1832 &#8211; 1898)</p></div>
+
+<p>Logic and truth tables can be used to solve a variety of problems of puzzles, many famous of which were invented by the writer of Alice in Wonderland, Lewis Carroll (1832 &#8211; 1898).</p>
+
+<p><em>A shipwrecked sailor arrives on a mysterious island inhabited by knights, who always tell the truth, and knaves, who always lie. Trying to get home, he knocks at the door of one of the huts. The islander who opens the door says that he and his wife are both knaves. Who should the sailor ask to find the right way home?</em></p>
+
+<p>This problem is easy to solve using logic and truth tables. Let <span class="prop">H</span> and <span class="prop">W</span> be two propositions which are true if the husband or wife are knights, respectively, and false if they are knaves.</p>
+
+<p>The husban said that both he and his wife are knaves, i.e. that <span class="prop">&not;H &and; &not;W</span>. If he is a knight, this proposition is true, and if he is a knave, it is false. In particular, we know that <span class="prop">H &equiv; (&not;H &and; &not;W)</span> must be true.</p>
+
+<p>We can draw a truth table to determine the value of this proposition depending on the possible values of <span class="prop">H</span> and <span class="prop">W</span>:</p>
+
+<table width="380" class="truthTable">
+  <tr><td width="50"><span class="prop">H</span><td width="50" class="td_right tdLight"><span class="prop">W</span><td width="80"><span class="prop">&not;H &and; &not;W</span><td width="100"><span class="prop">H &equiv; (&not;H &and; &not;W)</span>
+  <tr><td><strong class="green">T</strong><td class="td_right tdLight"><strong class="green">T</strong><td><strong class="red">F</strong><td><strong class="red">F</strong>
+  <tr><td><strong class="green">T</strong><td class="td_right tdLight"><strong class="red">F</strong><td width="100"><strong class="red">F</strong><td><strong class="red">F</strong>
+  <tr style="background: #DFD"><td><strong class="red">F</strong><td class="td_right tdLight"><strong class="green">T</strong><td><strong class="red">F</strong><td><strong class="green">T</strong>
+  <tr><td><strong class="red">F</strong><td class="td_right tdLight"><strong class="red">F</strong><td><strong class="green">T</strong><td><strong class="red">F</strong>
+</table>
+
+<p>The only row in which <span class="prop">H &equiv; (&not;H &and; &not;W)</span> is true is the second row, where the husband is a knave and the wife is a knight. Therefore the sailor should ask the wife for directions home.</p>
+
+<p class="centre"><img width="360" height="275" alice="Alice Tea Party" src="resources/Logic_and_Paradoxes/alice.jpg"/><br><span class="caption">Why is a raven like a writing desk?</span></p>
+
+<p>You could have easily solved the Knights and Knaves puzzle above without creating an entire truth table, but maybe not this much more complex problem:</p>
+
+<p><em>The sailor meets three different islanders, which we shall simply call A, B and C. Islander A claims that B and C are knights, and B
+says that A is a knave and C is a knight. Who is telling the truth?</em></p>
+
+<p>Since we have an additional person there will be twice as many rows in the truth table, but the principles remain the same. In this example we have to find the row where <span class="prop">(A &equiv; (B &and; C)) &and; (B &equiv; (&not;A &and; C))</span> is true. Can you work out how this proposition corresponds to the original problem?</p>
+
+<table class="truthTable tableFixed" width="600" style="max-width: 600px;">
+
+  <tr>
+    <td width="30"><span class="prop">A</span>
+    <td width="30"><span class="prop">B</span>
+    <td width="30" class="td_right tdLight"><span class="prop">C</span>
+    <td width="60"><span class="prop">B &and; C</span>
+    <td width="100" class="td_right tdLight"><span class="prop">A &equiv; (B &and; C)</span>
+    <td width="70"><span class="prop">&not;A &and; C</span>
+    <td width="110" class="td_right tdLight"><span class="prop">B &equiv; (&not;A &and; C)</span>
+    <td width="160"><span class="prop" style="font-size: 0.7em; margin-bottom: 4px;">(A &equiv; (B &and; C)) &and; (B &equiv; (&not;A &and; C))</span>
+
+  <tr>
+    <td><strong class="green">T</strong>
+    <td><strong class="green">T</strong>
+    <td class="td_right tdLight"><strong class="green">T</strong>
+    <td><strong class="green">T</strong>
+    <td class="td_right tdLight"><strong class="green">T</strong>
+    <td><strong class="red">F</strong>
+    <td class="td_right tdLight"><strong class="red">F</strong>
+    <td><strong class="red">F</strong>
+
+  <tr>
+    <td><strong class="green">T</strong>
+    <td><strong class="green">T</strong>
+    <td class="td_right tdLight"><strong class="red">F</strong>
+    <td><strong class="red">F</strong>
+    <td class="td_right tdLight"><strong class="red">F</strong>
+    <td><strong class="red">F</strong>
+    <td class="td_right tdLight"><strong class="red">F</strong>
+    <td><strong class="red">F</strong>
+
+  <tr>
+    <td><strong class="green">T</strong>
+    <td><strong class="red">F</strong>
+    <td class="td_right tdLight"><strong class="green">T</strong>
+    <td><strong class="red">F</strong>
+    <td class="td_right tdLight"><strong class="red">F</strong>
+    <td><strong class="red">F</strong>
+    <td class="td_right tdLight"><strong class="green">T</strong>
+    <td><strong class="red">F</strong>
+
+  <tr>
+    <td><strong class="green">T</strong>
+    <td><strong class="green">T</strong>
+    <td class="td_right tdLight"><strong class="red">F</strong>
+    <td><strong class="red">F</strong>
+    <td class="td_right tdLight"><strong class="red">F</strong>
+    <td><strong class="red">F</strong>
+    <td class="td_right tdLight"><strong class="green">T</strong>
+    <td><strong class="red">F</strong>
+
+  <tr>
+    <td><strong class="red">F</strong>
+    <td><strong class="green">T</strong>
+    <td class="td_right tdLight"><strong class="green">T</strong>
+    <td><strong class="green">T</strong>
+    <td class="td_right tdLight"><strong class="red">F</strong>
+    <td><strong class="green">T</strong>
+    <td class="td_right tdLight"><strong class="green">T</strong>
+    <td><strong class="red">F</strong>
+
+  <tr>
+    <td><strong class="red">F</strong>
+    <td><strong class="green">T</strong>
+    <td class="td_right tdLight"><strong class="red">F</strong>
+    <td><strong class="red">F</strong>
+    <td class="td_right tdLight"><strong class="green">T</strong>
+    <td><strong class="red">F</strong>
+    <td class="td_right tdLight"><strong class="red">F</strong>
+    <td><strong class="red">F</strong>
+
+  <tr>
+    <td><strong class="red">F</strong>
+    <td><strong class="red">F</strong>
+    <td class="td_right tdLight"><strong class="green">T</strong>
+    <td><strong class="red">F</strong>
+    <td class="td_right tdLight"><strong class="green">T</strong>
+    <td><strong class="green">T</strong>
+    <td class="td_right tdLight"><strong class="red">F</strong>
+    <td><strong class="red">F</strong>
+
+  <tr style="background: #DFD">
+    <td><strong class="red">F</strong>
+    <td><strong class="red">F</strong>
+    <td class="td_right tdLight"><strong class="red">F</strong>
+    <td><strong class="red">F</strong>
+    <td class="td_right tdLight"><strong class="green">T</strong>
+    <td><strong class="red">F</strong>
+    <td class="td_right tdLight"><strong class="green">T</strong>
+    <td><strong class="green">T</strong>
+
+</table>
+
+<p>The only possible solution is when A, B and C are all knaves. Unfortunately, there is no one the sailor can trust&hellip;</p>
+
+
+<div class="box frame">
+  <div class="boxTitle">Labyrinth (1986)</div>
+  <video poster="resources/Logic_and_Paradoxes/labyrinth.jpg" controls>
+    <source src='resources/Logic_and_Paradoxes/labyrinth.mp4'/>
+    <p>Your browser does not support HTML video.</p>
+  </video>
+  <div class="boxCaption">
+    <p class="caption">&copy; 1986 Jim Henson Productions, Lucasfilm, TriStar Pictures (<a href="Credits">Fair Use Policy</a>)</p>
+  </div>
+</div>
+
+<div class="box frame tabbed">
+  <div class="boxTabBar boxTabBar50">
+    <div class="boxTabLink on">The Hardest Logic Problem</div>
+    <div class="boxTabLink">Solution</div>
+  </div>
+
+  <div class="boxWrap on">
+    <div class="boxTextWrap">
+      <div class="lbox"><img src="resources/Logic_and_Paradoxes/apollo.png" width="200" height="302"/></div>
+      <p>After years of sailing across the ocean, Odysseus arrives in the remote city of Mathigon. He wants to ask the Oracle for the directions home, but the gate to the temple of wisdom is guarded by three gods: <strong>A</strong>pollo, <strong>B</strong>acchus, and <strong>C</strong>hronos. One of the gods always tells the truth, one of them always lies, and one god tells the truth and lies at random.</p>
+      <p>In order to pass the gate, Odysseus has to determine which god tells the truth, which one lies, and which one responds randomly &#8211; by asking three yes/no questions, each directed to a single god. The gods understand English, but they always answer in Olympian. The Olympian words for <em>yes</em> and <em>no</em> are <em>ho</em> and <em>to</em>, but it is unknown which way round. How should Odysseus proceed?</p>
+      <p class="lgrey">Note that you can ask multiple questions to the same god, but you can&rsquo;t direct a question to multiple gods at once. The second and third question may depend on the previous answers&hellip;</p>
+      <div class="clear"></div>
+    </div>
+  </div>
+
+  <div class="boxWrap">
+    <div class="boxTextWrap">
+
+        <div class="todo">Coming Soon</div>
+
+    </div>
+  </div>
+</div>
+
+
+
+
+<h2>Logic and Computers</h2>
+
+<div class="todo">
+    Coming Soon
+
+<!--<p>Boolean algebra is the 101 of digital computers where everything -
+data and programs - is represented by binary digits or bits, the
+atomic units of information with just two values, 0 or 1, or, rather,
+two distinct physical states. An impressive but extremely outdated
+technique uses ferrite rings, capable of holding a magnetic field in
+either of two direction. Rings were threaded by four wires, resulting
+in an intricate pattern. Reading had to be done by trying to flip the
+state of a core to 0 by driving the vertical and horizontal lines
+intersecting at that core. If flipping was successful, the state had
+to be restored in the next memory cycle.</p>
+
+<img alt="Core memory close-up"
+src="CoreMemory03.jpg" width="300"/>
+
+<p>Core grids were arranged in planes. The photograph shows a stack of
+10 planes of 50 bytes each, resulting in the massive storage capacity
+of 500 bytes.</p>
+
+<img alt="Core memory stack"
+src="CoreMemory04.jpg" width="300"/>
+
+<p>Computer processing happens in digital electronic circuits. Their
+design is based on Boolean expressions and the representation of
+integer numbers in the binary numeral system discovered by
+Gottfried Leibniz (1646 - 1716). Instead of using ten digits as we
+are used to do in the decimal numeral system, the binary system
+requires only two. The sequence of integers starts with 0, followed
+by 1. Now there isn't a third digit to be used for 2, and so we must
+occupy another binary position, resulting in 10, followed by 11 (for
+3), and for 4, written as 100, we need yet another binary position.
+Arithmetic using this notation is based on extremely simple rules.
+Instead of having to learn a large number of single-digit sums you
+only have to know that 0+0=0, 0+1=1+0=1 and 1+1=0, with 1 as carry.
+These simple formulæ have direct counterparts in Boolean expressions,
+and they are easy to represent by logic gates, devices implementing
+Boolean functions. As a consequence, all of the algorithms and
+mathematics that can be described with Boolean logic can be constructed
+using logic gates.</p>
+
+<p>To add two binary digits, A and B, a digital circuit called
+<em>half adder</em> combines the digits using an "exclusive or" gate to
+produce the sum S and an "and" gate for the carry C.
+</p>
+
+<img alt="Half Adder"
+src="Half_Adder.svg.png"/>
+
+<p>The carry resulting from the addition of a digit must be taken into
+account when the next higher digit is calculated; for this a half
+adder isn't sufficient when three inputs need to be added. The
+<em>full adder</em> circuit handles this by computing S by a
+threefold exclusive or between A, B and C<sub>in</sub>, the carry
+from the previous digit; the carry C<sub>out</sub> is 1 whenever
+two or three of the inputs are 1.</p>
+
+<img alt="Full Adder"
+src="Full_Adder.svg.png"/>-->
+</div>
+
+
+<h2>Predicate Calculus</h2>
+
+<div class="todo">
+    Coming Soon
+<!--<p>A more powerful formal system for expressing logic is known as
+<b>first-order predicate calculus</b>. It adds a couple of syntactic
+constructs to propositional logic: predicates and quantifiers.
+Also, there is the concept of investigating entities of a certain
+domain, e.g., the natural numbers or the citizens of France.
+<ul>
+  <li>A <em>predicate</em> applied to a specific number of entities
+      returns true or false. If <i>n</i> is a natural number,
+      the predicate <i>even</i> would return true if, and only if,
+      <i>n</i> &cong; 0 mod 2. Or, for pairs of numbers, the
+      predicate <i>&gt;</i> returns true if the first number is
+      greater than the second one.
+  <li>The <em>universal quantifier</em> &forall;, pronounced "for all"
+      or "for every" is used to write expressions that are valid
+      for a set of entities.
+  <li>The <em>existential quantifier</em> &exist;,
+      pronounced "exists," lets you write expressions that establish
+      the existence of one or more entities, for which a certain
+      predicate is true.
+</ul>
+The expressive power of these constructs is quite remarkable. It's
+easy to write statements such as "for each natural number there is
+a natural number greater than twice that number":
+<pre>
+   &forall; <i>x</i> &exist; <i>y</i> &gt;(<i>y</i>,<i>x</i>)
+</pre>
+There is nothing to keep you from expressing nonsense (or, rather,
+false) statements; take this one, for instance, where <i>x</i>
+and <i>y</i> are variables meant to represent natural numbers:
+<pre>
+   &forall; <i>x</i> &exist; <i>y</i> <i>x</i> = 3<i>y</i>
+</pre>
+It's certainly not true that all natural numbers are integer multiples
+of 3!
+</p>
+
+<p>Here is a table showing what fruit three people like:
+</p>
+<table border="2" cellpadding="4">
+ <tr><td>&nbsp; <th>Apple   <th>Banana  <th>Cherry  <th>Date
+ <tr><th>Luke   <th>&nbsp;  <th>&#x2714;<th>&#x2714;<th>&nbsp;
+ <tr><th>Mary   <th>&#x2714;<th>&#x2714;<th>&nbsp;  <th>&#x2714;
+ <tr><th>Nick   <th>&nbsp;  <th>&#x2714;<th>&nbsp;  <th>&nbsp;
+</table>
+When likes(<i>p</i>,<i>f</i>) is the predicate returning true if person
+<i>p</i> likes fruit <i>f</i>, how can you express the truth of some
+facts you can learn from the table?
+<ul>
+ <li>Mary does not like cherries. Answer: &not;likes(Mary,Cherry)
+ <li>Luke likes bananas and cherries. Answer: likes(Luke,Banana) &and; likes(Luke,Cherry)
+ <li>There is at least one fruit liked by all. Answer: &exist;<i>f</i> &forall;<i>p</i> likes(<i>p</i>,<i>f</i>)
+ <li>Nobody likes all fruits. Answer: &not; &exist;<i>p</i> &forall;<i>f</i> likes(<i>p</i>,<i>f</i>)
+</ul>
+</p>-->
+
+     </div>
+
+
+<h2>Paradoxes</h2>
+
+     <div class="todo">
+         Coming Soon
+
+         <!--
+<p>[[Need a catchy entry from logic to paradox. Move Epimenides up front?
+knight/knave - modified??]]</p>
+
+
+
+<p>
+The word "paradox" has several shades of meaning, but they all centre
+around something (such as a situation) that is made up of two opposite
+things in a seemingly impossible or controversial way. So, when
+in Mel Brooks' "Silent Movie" it is the celebrated mime artist Marcel
+Marceau who, of all people, speaks the only word, "Non!" And the
+partner in the conversation claims not to have understood, due to his
+ignorance of French.
+</p>
+<p>[[<i>The scene is (at ~2:50) part of a 5' video available on
+  http://www.youtube.com/watch?v=6yRGxw55x5M
+  which is too long, and has Spanish subtitles</i> :-{ ]]</p>
+
+
+
+<p>
+Many painters were intrigued by the possibility of creating images
+that would deceive the eye and baffle the mind. Being able to paint
+photo-realistically was, at times, a highly valued skill essential
+for an employment in high places. The Flemish painter
+Cornelius Norbertus Gijsbrechts (c. 1610 - after 1675)
+was hired by the Danish king Frederic III and created most of the
+paintings of the Perspective Chamber in the king's palace. Imagine
+paintings like the one shown here, set without a frame in a room
+with a panelling that continues on the canvas, with objects seemingly
+being in the room and clustered around the actual painting.
+</p>
+
+<img alt="Gijsbrechts: Studio wall and vanitas still life"
+     src="GijsbrechtsCopy.jpg"/>
+
+<p>
+Much later, several surrealistic painters became interested in the
+contradiction of art and reality, and the possibility to create
+impossible scenes with photographic precision. The Belgian painter
+René Magritte (1898 - 1967) has created this image of a pipe,
+the sentence below saying, "This isn't a pipe." And indeed, it isn't,
+as Magritte himself once remarked, "Try stuffing it with tobacco!"
+</p>
+<img alt="Magritte: Ceci n'est pas une pipe"
+     src="this-is-not-a-pipe-1948.jpg"/>
+
+
+<p>
+Various aspects of geometry recur in the work of the Dutch graphic artist
+Maurits Cornelis Escher (1898 - 1972). Besides his studies of tesselations,
+geometric distortions and infinity, he is famous for his creations of
+impossible architectural constructions, one of which is featured in the
+lithography "Belvedere".
+</p>
+<img alt="M.C.Escher: Belvedere"
+     src="belvedere.jpg"/>
+
+<p>The underlying principle of the paradoxical structure is advertised by
+the model of an impossible cube over which the knave sitting on the bench
+pores.</p>
+<img alt="Impossible cube"
+     src="Impossible_cube_illusion_angle.svg.png"/>
+
+<p>
+One classic example of a logic paradox is the famous <b>Epimenides paradox</b>
+(circa 600 BC). Epimenides, a Cretan, reportedly stated that
+"The Cretans are always liars." Since Epimenides himself is a Cretan,
+his statement implies that it is not true, and Cretans are veracious,
+and the statement is true. If, however, we assume that is true, then
+Cretans are liars, and what Epimenides says is untrue.</p>
+
+<p>But mathematical logic provides a surprising solution to this paradox.
+It is based on the insight that the negation of "all x have property p"
+is not "no x has property p" but "there exists an x that does not have
+property p". Thus, if we assume that Epimenides knows that there is at
+least one veracious Cretan (excluding himself) we can decide that his
+statement is false, in concert with him being a liar.
+</p>
+
+<p>
+A modern version of this paradox is known as the <b>liar paradox</b>.
+Its most concise form simply says, "This statement is false." In this case,
+there is no way out from the resulting paradox: assuming that the
+statement is either true or false simply produces its negation,
+respectively.
+</p>
+
+<p>
+Another famous paradox is due to the mathematician and philosopher
+Betrand Russel (1872 - 1970). It is based on the problem that arises
+when a set is defined to consist of all sets that are not members of
+themselves, something which is possible in the naive set theory founded
+by Georg Cantor (1845 – 1918). Its illustration by a real-life situation
+goes like this: "The barber is a man in town who shaves all those, and
+only those, men in town who do not shave themselves." Trying to answer
+the question "Who shaves the barber?" immediately leads to a
+contradiction, for instance, because the barber has to shave
+himself since he is not one of those men that shave themselves.
+</p>
+
+<p>The discovery of led to an axiomatic redefinition of set theory
+called <b>ZFC</b> or Zermelo-Fraenkel set theory with the axiom of
+choice. Esentially, it does not allow unrestricted comprehension, i.e.,
+the construction of any set from a collection of elements satisfying
+an arbitrary property.
+</p>
+
+<p>But loops of this kind crop up in unexpected places. There is another
+classic dilemma, resulting from a dispute between Protagoras
+(c. 490 BC - c. 420 BC) and his pupil, Euathlus. They had an agreement
+that the student pay Protagoras for his instruction after he wins his
+first court case. Euathlos delayed going into practice for quite some
+time, and Protagoras decided to sue Euathlus for the amount owed.
+</p>
+<p>
+Protagoras argued that if the court would rule in his favour, he would
+be paid his money. With Euathlus winning the case, Protagoras would
+still be paid according to the original contract, because Euathlus
+would have won his first case. Euathlus, however, could equally well
+claim that the court could decide in his favour, and so he would not
+have to pay Protagoras. But a ruling against him would result in a loss
+of the case, and he would not be obliged to pay.
+</p>
+<p>
+There is no easy way out of this hidden self-reference. The contract
+between Protagoras and Euathlus has suddenly been called to decide
+on its own fulfilment, and it was never designed for this contingency.
+A failure like this is inherent in many (if not all) modern bodies of
+law, given that there is even the slightest chance that one of them
+might have to rule against itself.</p>
+
+
+<p>[[Achilles and the tortoise. Quotes from the "Alice" books.]]</p> -->
+</div>
+
+<!--(bake templates/bottom.html)-->

@@ -1,0 +1,7 @@
+<!--(bake templates/top.html title="Error" description="Error" id="Error")-->
+
+<h2>Something went wrong!</h2>
+<p>Unfortunately we can&#8217;t find this page. Ensure you used the correct URL, and email <a href="mailto:info@mathigon.org">info@mathigon.org</a> if you have any questions.</p>
+
+<!--(bake templates/bottom.html)-->
+

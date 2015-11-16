@@ -1,0 +1,335 @@
+<!--(bake templates/top.html title="Prime Numbers" description="Divisibility - Prime Numbers - Sieve of Eratosthenes - Number of Primes - Distribution of Primes - Riemann Hypothesis - Millennium Prize Problems" id="Prime_Numbers")-->
+
+<h2>Divisibility</h2>
+
+<p>If we can divide a number <em>A</em> by a number <em>B</em>, without remainder, we say that <em>B</em> is a <strong>factor</strong> or <strong>divisor</strong> of <em>A</em>, and that <em>A</em> is a <strong>multiple</strong> of <em>B</em>. For example, 7 is a factor of 21, 4 is a factor of 20 and 60 is a multiple of 12.</p>
+<p>When thinking about number problems, it is often useful to find <em>all</em> the factors of a number. To do this, we should note that factors always appear in pairs. For example, 7 &times; 3 = 21, so  3 and 7 are a factor pair of 21. Let us write down these factor  pairs, until we meet in the middle:</p>
+<table width="300" border="" cellpadding="0" cellspacing="0" style="table-layout: fixed">
+  <tr>
+    <td>24</td>
+    <td>|</td>
+    <td class="dv_1">1</td>
+    <td class="dv_2">2</td>
+    <td class="dv_3">3</td>
+    <td class="dv_4">4</td>
+    <td class="dv_4">6</td>
+    <td class="dv_3">8</td>
+    <td class="dv_2">12</td>
+    <td class="dv_1">24</td>
+  </tr>
+</table>
+<div id="divisors" class="dragdealer" style="width: 200px;"><div class="handle"></div></div>
+<p>And these are indeed all the factors of 24. In general, we start with 1 and the number itself and then try 2, 3 and so on. If one pair doesn&#8217;t work, we skip to the next until the upper and lower bound meet.</p>
+
+<!--<div class="box">
+  <ul class="tabs boxtitle">
+    <li class="current">
+      <h3>Divisibility Exercises</h3></li>
+    <li>
+      <h3>Solutions</h3></li>
+  </ul>
+  <div class="boxtext tabtext visible">
+    <p>Find all the factors of 16, 30, 45 and 60.</p>
+    <p>Now try to find the factors of 19 and 41.</p>
+  </div>
+  <div class="boxtext tabtext">
+    <p>The factors of 16 are 1, 2, 4, 8 and 16. Since 16 is a square number, the factor 4 appears twice.<br>
+      The factors of 30 are 1, 2, 3, 5, 6, 10, 15, and 30.<br>
+      The factors of 45 are 1, 3, 5, 9, 15
+    and 45.<br>
+    The factors of 60 are 1, 2, 3, 4, 5, 6, 10, 12, 15, 20 , 30 and 60.</p>
+    <p>19 and 41 have no factors other than 1 and itself.</p>
+    <div class="clear"></div>
+  </div>
+</div>-->
+
+
+<p>Some numbers are very special because they only have two factors: 1 and itself. These numbers are called <strong>Prime Numbers</strong>.</p>
+
+
+<h2>Prime Numbers</h2>
+
+<p>A prime number is a positive integer which has no factors other than 1 and itself. 1 itself, by definition, is <em>not</em> a prime number. The first few prime numbers are 2, 3, 5, 7, 11, 13, &#8230;</p>
+<p>Prime numbers can&#8217;t be divided any further and thus can be thought of as the &#8216;atoms&#8217; of numbers. Any number which is <em>not</em> prime  can be written as the product of prime numbers: we simply keep dividing it into more parts until all factors are prime. For example,</p>
+
+<table width="300" border="" class="tableSmall">
+  <tr>
+    <td>84</td>
+    <td>=</td>
+    <td class="blue">2</td>
+    <td>&times;</td>
+    <td colspan="5" class="redd">42</td>
+    </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>=</td>
+    <td class="blue">2</td>
+    <td>&times;</td>
+    <td class="orange">2</td>
+    <td>&times;</td>
+    <td colspan="3" class="purple">21</td>
+    </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>=</td>
+    <td class="blue">2</td>
+    <td>&times;</td>
+    <td class="orange">2</td>
+    <td>&times;</td>
+    <td class="pink">3</td>
+    <td>&times;</td>
+    <td class="puple">7</td>
+    </tr>
+</table>
+
+<p>Now 2, 3 and 7 are prime numbers and can&#8217;t be divided  further. The product<span class="blue"> 2</span> &times;<span class="orange"> 2</span> &times;<span class="pink"> 3 </span>&times; <span class="puple">7</span> is called the <strong>prime factorisation</strong> of 84, and <span class="blue">2</span>, <span class="pink">3</span> and <span class="puple">7</span> are its <strong>prime factors</strong>. Note that some primes, like 2 in this case, can appear several times in a prime factorisation.</p>
+<p>Every integer has  a prime factorisation and every integer has a <em>different</em> prime factorisation. Furthermore, there is <em>only one way</em> to write a number as a product of primes &#8211; unless we count different orderings of the primes. This is called the <strong>Fundamental Theorem of Arithmetic</strong> (FTA).</p>
+<p>The FTA means that we can  work with the prime factorisations of numbers, rather than the actual numbers. This makes many problems in mathematics a lot easier: we divide all numbers into their prime factors, we solve the problem for the individual primes, and then we combine these results to solve the initial problem.</p>
+<h2>The Sieve of Eratosthenes</h2>
+
+<div class="rbox"><img src="resources/Prime_Numbers/eratosthenes.png" width="270" height="270" alt="erathostenes">
+  <p class="caption">Eratosthenes of Cyrene (276 BC &#8211; 194 BC)</p>
+</div>
+<p>In general, it can be very hard to find prime numbers, or to check whether a certain number is prime. However the Greek mathematician Eratosthenes of Cyrene found a simple method to find all prime numbers up to 100: the <strong>Sieve of Eratosthenes.</strong></p>
+<p>First we need to write down all numbers up to 100. We know that 1 is not prime and that 2 is the smallest prime number. Any multiple of 2 can&#8217;t be prime, since it has 2 as a factor. Therefore we can cross out all  multiples of 2.</p>
+<p>The next number in our list is 3 &#8211; again a prime number. And again all multiples of 3 can&#8217;t be prime, since they have 3 as a factor. Therefore we can cross these out as well. The next number, 4, is already crossed out so we move on to 5: it is a prime number and again we cross out all multiples of 5.</p>
+<p>Now we continue that way, until we are left with only the prime numbers up to 100.</p>
+
+<div class="clear"></div>
+
+<div class="box emptyCaption">
+  <div class="boxTitle">The Sieve of Eratosthenes</div>
+  <div class="boxTextWrap">
+  <table  class="tableSmall sansSerif primes" width="400" border="">
+  <tr>
+    <td><div class="prime_box">1</div></td>
+    <td><div class="prime_box">2</div></td>
+    <td><div class="prime_box">3</div></td>
+    <td><div class="prime_box">4</div></td>
+    <td><div class="prime_box">5</div></td>
+    <td><div class="prime_box">6</div></td>
+    <td><div class="prime_box">7</div></td>
+    <td><div class="prime_box">8</div></td>
+    <td><div class="prime_box">9</div></td>
+    <td><div class="prime_box">10</div></td>
+  </tr>
+  <tr>
+    <td><div class="prime_box">11</div></td>
+    <td><div class="prime_box">12</div></td>
+    <td><div class="prime_box">13</div></td>
+    <td><div class="prime_box">14</div></td>
+    <td><div class="prime_box">15</div></td>
+    <td><div class="prime_box">16</div></td>
+    <td><div class="prime_box">17</div></td>
+    <td><div class="prime_box">18</div></td>
+    <td><div class="prime_box">19</div></td>
+    <td><div class="prime_box">20</div></td>
+  </tr>
+  <tr>
+    <td><div class="prime_box">21</div></td>
+    <td><div class="prime_box">22</div></td>
+    <td><div class="prime_box">23</div></td>
+    <td><div class="prime_box">24</div></td>
+    <td><div class="prime_box">25</div></td>
+    <td><div class="prime_box">26</div></td>
+    <td><div class="prime_box">27</div></td>
+    <td><div class="prime_box">28</div></td>
+    <td><div class="prime_box">29</div></td>
+    <td><div class="prime_box">30</div></td>
+  </tr>
+  <tr>
+    <td><div class="prime_box">31</div></td>
+    <td><div class="prime_box">32</div></td>
+    <td><div class="prime_box">33</div></td>
+    <td><div class="prime_box">34</div></td>
+    <td><div class="prime_box">35</div></td>
+    <td><div class="prime_box">36</div></td>
+    <td><div class="prime_box">37</div></td>
+    <td><div class="prime_box">38</div></td>
+    <td><div class="prime_box">39</div></td>
+    <td><div class="prime_box">40</div></td>
+  </tr>
+  <tr>
+    <td><div class="prime_box">41</div></td>
+    <td><div class="prime_box">42</div></td>
+    <td><div class="prime_box">43</div></td>
+    <td><div class="prime_box">44</div></td>
+    <td><div class="prime_box">45</div></td>
+    <td><div class="prime_box">46</div></td>
+    <td><div class="prime_box">47</div></td>
+    <td><div class="prime_box">48</div></td>
+    <td><div class="prime_box">49</div></td>
+    <td><div class="prime_box">50</div></td>
+  </tr>
+  <tr>
+    <td><div class="prime_box">51</div></td>
+    <td><div class="prime_box">52</div></td>
+    <td><div class="prime_box">53</div></td>
+    <td><div class="prime_box">54</div></td>
+    <td><div class="prime_box">55</div></td>
+    <td><div class="prime_box">56</div></td>
+    <td><div class="prime_box">57</div></td>
+    <td><div class="prime_box">58</div></td>
+    <td><div class="prime_box">59</div></td>
+    <td><div class="prime_box">60</div></td>
+  </tr>
+  <tr>
+    <td><div class="prime_box">61</div></td>
+    <td><div class="prime_box">62</div></td>
+    <td><div class="prime_box">63</div></td>
+    <td><div class="prime_box">64</div></td>
+    <td><div class="prime_box">65</div></td>
+    <td><div class="prime_box">66</div></td>
+    <td><div class="prime_box">67</div></td>
+    <td><div class="prime_box">68</div></td>
+    <td><div class="prime_box">69</div></td>
+    <td><div class="prime_box">70</div></td>
+  </tr>
+  <tr>
+    <td><div class="prime_box">71</div></td>
+    <td><div class="prime_box">72</div></td>
+    <td><div class="prime_box">73</div></td>
+    <td><div class="prime_box">74</div></td>
+    <td><div class="prime_box">75</div></td>
+    <td><div class="prime_box">76</div></td>
+    <td><div class="prime_box">77</div></td>
+    <td><div class="prime_box">78</div></td>
+    <td><div class="prime_box">79</div></td>
+    <td><div class="prime_box">80</div></td>
+  </tr>
+  <tr>
+    <td><div class="prime_box">81</div></td>
+    <td><div class="prime_box">82</div></td>
+    <td><div class="prime_box">83</div></td>
+    <td><div class="prime_box">84</div></td>
+    <td><div class="prime_box">85</div></td>
+    <td><div class="prime_box">86</div></td>
+    <td><div class="prime_box">87</div></td>
+    <td><div class="prime_box">88</div></td>
+    <td><div class="prime_box">89</div></td>
+    <td><div class="prime_box">90</div></td>
+  </tr>
+  <tr>
+    <td><div class="prime_box">91</div></td>
+    <td><div class="prime_box">92</div></td>
+    <td><div class="prime_box">93</div></td>
+    <td><div class="prime_box">94</div></td>
+    <td><div class="prime_box">95</div></td>
+    <td><div class="prime_box">96</div></td>
+    <td><div class="prime_box">97</div></td>
+    <td><div class="prime_box">98</div></td>
+    <td><div class="prime_box">99</div></td>
+    <td><div class="prime_box">100</div></td>
+  </tr>
+  </table>
+  </div>
+  <div class="boxCaption frame prime_sub">
+    <p>We know that 1 is not a prime number and that 2 is the smallest prime number. Click on 2 to delete all of its multiples.</p>
+  </div>
+</div>
+
+
+<h2>How many Prime Numbers are there?</h2>
+
+<p>There are 25 prime numbers less than 100. If we continue we would find 21 prime numbers between 100 and 200, 16 prime numbers between 200 and 300 and only 14 prime numbers between 500 and 600. It seems that the primes keep getting more and more spread out, but do they ever stop? Is there a biggest/last prime number?</p>
+<p>The question whether there is a <em>biggest</em> prime number is the same as the question whether there are <em>infinitely many</em> primes. If there <em>is</em> a biggest prime, say <em>P</em>, then all other primes must be less than <em>P</em> so there are at most <em>P</em> primes &#8211; clearly not infinitely many. On the other hand if there is <em>no</em> biggest prime, then if we think of any big prime there must be an even bigger one. And a prime bigger than that one. Since we must always be able to find a prime bigger than the previous one,  there must be infinitely many of them.</p>
+<p>The Greek mathematician Euclid (see also <a href="Modelling_Space.html">Modelling Space</a>) proved that there are indeed infinitely many primes, using the following argument:</p>
+<blockquote>
+  <p>Suppose there were only finitely many prime numbers. Let us multiply all of them together, to get a very large  number which we call <em>N</em>. Let us think about <em>N</em> + 1, and notice that any prime that divides <em>N</em> cannot  divide <em>N</em> + 1. <span class="lgrey">(If it would, it also had to divide the difference between <em>N</em> and <em>N</em> + 1 which is 1. But the only number that divides 1 is 1 itself.) </span>All prime numbers  we have found so far  divide <em>N</em> (after all, <em>N</em> is the product of all of them). Therefore  none of these primes   divides <em>N</em> + 1.</p>
+  <p>But remember that, by the Fundamental Theorem of Arithmetic, every number, including <em>N</em> + 1, must have a prime factor. So either <em>N</em> + 1 is a prime itself, or there is a  prime that divides <em>N</em> + 1. And in both cases this means there is a   prime which <em>doesn&#8217;t</em> divide <em>N</em>.</p>
+  <p>All primes we started with divide <em>N</em>. Therefore this <em>new</em> prime can&#8217;t be one of them. We can add it to our list and start all over again. And since we could repeat these steps forever, there must be infinitely many primes.</p>
+</blockquote>
+<p>Euclid&#8217;s argument, which can be formalised using a method called &#8220;proof by contradiction&#8221; is one of the first examples in history of a formal mathematical <a href="Axioms_and_Proof">proof</a>. His proof was correct, but  mathematicians often try to find more than one proof for the same result. It wasn&#8217;t until more than 2000 years later that a second proof was discovered: by the Swiss mathematician Leonhard Euler.</p>
+
+
+
+<h2>Problems with Primes</h2>
+
+<p>Prime Numbers are of key importance in many areas of mathematics. Here are a few problems involving primes or their applications:</p>
+
+<div class="box frame tabbed">
+  <div class="boxTabBar boxTabBarWider">
+    <div class="boxTabLink on">Difference of Squares</div>
+    <div class="boxTabLink">The Goldbach Conjecture</div>
+    <div class="boxTabLink">RSA Cryptography</div>
+  </div>
+
+   <div class="boxWrap on">
+    <div class="boxTextWrap">
+    <div class="rbox"><img src="resources/Prime_Numbers/fermat.jpg" width="200" height="270" alt="pierre de fermat" class="shadow"><p class="caption">Pierre de Fermat (c. 1601 &#8211; 1665)</p>
+    </div>
+    <p>The idea behind &#8220;Difference of Squares&#8221; is that we can factorise any number that is the difference between two square numbers using <em>a</em><sup>2</sup> &#8211; <em>b</em><sup>2</sup> = (<em>a</em> + <em>b</em>)(<em>a</em> &#8211; <em>b</em>). (If you multiply out the brackets you will notice that the two cross-terms <em>ab</em> cancel.)</p>
+    <p>It is often useful to factorise a number into its prime factors, and the difference of squares can be very useful. If we know that a particular number is the difference between two squares <em>a</em><sup>2</sup> and <em>b</em><sup>2</sup>, then we know that we can factorise the number as (<em>a</em> + <em>b</em>) &times; (<em>a</em> &#8211; <em>b</em>). The following method was discovered by the  French mathematician Pierre de Fermat (c. 1601 &#8211; 1665) and is called <strong>Fermat Factorisation</strong>:</p>
+    <p><strong>Example 1: 221</strong><br>
+      Notice
+    that 225 = 15<sup>2</sup> and that 4 = 2<sup>2</sup>. We have 221 = 225 &#8211; 4 = 15<sup>2</sup> &#8211; 2<sup>2</sup>, and therefore 221 = (15 + 2) &times; (15 &#8211; 2) = 13 &times; 17.</p>
+    <p><strong>Example 2: 299</strong><br>
+      In this case
+    it is not quite as easy to find squares that work. But we can observe that the next square number after 299 is 18<sup>2</sup> = 324. And the difference, 324 &#8211; 299 = 25 is another square number. Therefore 299 = 18<sup>2</sup> &#8211; 5<sup>2</sup> = (18 + 5) &times; (18 &#8211; 5) = 23 &times; 13.</p>
+    <p><strong>Example 3: 319</strong><br>
+      Again there aren&#8217;t any obvious choices for square numbers. The next square after 319 is
+    18<sup>2</sup> = 324, but their difference, 324 &#8211; 319 = 5 is not a square. We have to keep looking. The following square number is 19<sup>2</sup> = 361, but again their difference 361 &#8211; 319 = 42 is not a square. The next square number is 20<sup>2</sup> = 400, and now we are lucky: the difference 400 &#8211; 319 = 81 = 9<sup>2</sup> is a square. Therefore 319 = (20 + 9) &times; (20 &#8211; 9) = 29 &times; 11.</p>
+    <p>Like above, we often need more than one step to find appropriate square numbers, but Fermat factorisation is still much more efficient than just trying to see whether certain primes are factors. Today, methematicians have developed much more advanced medthods to factorise primes, but for very large numbers it still takes a very long time.</p>
+    <p>RSA Cryptography is founded on the belief that it is very hard to factorise very large numbers, with hundreds of digits. Even if we were to use all computers on Earth, factorisation of these huge numbers would still take longer than the age of the universe!</p>
+    <p>&nbsp;</p>
+  </div>
+  </div>
+
+   <div class="boxWrap">
+    <div class="boxTextWrap">
+    <div class="rbox"><img src="resources/Prime_Numbers/goldbach.jpg" width="200" height="225" alt="christian goldbach" class="shadow">
+    <p class="caption">Christian Goldbach</p></div>
+    <p>Prime numbers are defined using the concept of <em>multiplication</em>, factors and divisors, and appear very often when you have to multiply different numbers. It therefore seems unlikely that Primes should have any link to <em>addition</em>, but this is the idea behind the Goldbach Conjecture:</p>
+    <p>In 1742, the German mathematician Christian Goldbach noticed that, so it seems, all even integers (except 2) can be written as the sum of two prime numbers. For example, 6 = 3 + 3, 8 = 3 + 5 or 24 = 13 + 11. He wrote this in a letter to Leonhard Euler, but neither of them was able to prove it.</p>
+    <p>Since then, computers have checked that the Goldbach Conjecture works for all even numbers up to 4 &times; 10<sup>18</sup> (that&#8217;s a 4 with 18 zeros). Many mathematicians have tried, but nobody was able to find a proof. Its simplicity and difficulty make it one of the best known unsolved problems in mathematics.</p>
+  </div>
+  </div>
+
+  <div class="boxWrap">
+    <div class="boxTextWrap">
+    <div class="rbox"><img src="resources/Prime_Numbers/rsa.jpg" width="250" height="238" alt="internet data" class="shadow"><p class="caption">Prime Numbers make our internet run!</p></div>
+    <p>Prime numbers are intrinsically useful in mathematics, but for a long time they were thought to have no practical application whatsoever. This changed in the second half of the 20th century, when mathematicians discovered an extremely secure way to encrypt messages using prime numbers.</p>
+    <p>It is called RSA Cryptography, and named after its three inventors, Ron <strong>R</strong>ivest, Adi <strong>S</strong>hamir and Leonard <strong>A</strong>dleman, who published it in 1977. A similar method was known to GCHQ, the cryptography arm of the British Secret Service, since 1973, but classified.</p>
+    <p>The mathematics behind RSA is described in the chapter on <a href="Coding_and_Cryptography">Cryptography</a>. Today, RSA is used everywhere in technology, whether online banking or sending secure emails.</p>
+  </div>
+  </div>
+</div>
+
+
+
+<h2>The Distribution of the Primes</h2>
+
+<p>Above, we saw that prime numbers get rarer as numbers increase. But they also appear completely random, without regular intervals or patterns. And now and then, two primes appear next to each other, just 2 apart: these are called <strong>Twin Primes</strong>. Here are a few examples:</p>
+<p class="centre">(3, 5), (11, 13), (41, 43), (101, 103), (2027,2029), (108377,108379), (1523651,1523653)</p>
+<p>For very large numbers, the gaps between primes (on average) get bigger and bigger. But it seems we can always find two primes next to each other. The largest known pair of twin primes has
+58711 digits! Nevertheless, it is an open problem whether there are infinitely many twin primes or not.</p>
+<p>Many mathematicians have thought about the structure and distribution of prime numbers. But the twin primes show that the gaps between consecutive primes are not particularly useful &#8211; they can be incredibly large or as small as 2. The German mathematician Carl Friedrich Gauss, when only 15 years old, had a much better idea: he counted how many primes there were up to a particular point. This gave rise to the <strong>Prime Counting Function</strong>, often denoted by <em>&pi;</em>(<em>x</em>) <span class="lgrey">(not to be confused by the number <em>&pi;</em>)</span>:</p>
+<p class="centre"><img src="resources/Prime_Numbers/primecount.png" width="667" height="233" alt="prime counting function"></p>
+<p>As we zoom out of this function, it becomes very smooth, and Gauss noticed that it looked surprisingly similar to the function&nbsp;<em> </em><img src="resources/Prime_Numbers/prime.png" width="34" height="21" alt="x/log(x)" > . <span class="lgrey">(Here &#8220;log&#8221; is the natural logarithm which some books also denote &#8220;ln&#8221;.)</span> Gauss predicted that these two functions are always &#8220;approximately similar&#8221;. This is called the <strong>Prime Number Theorem</strong>, and it was proved formally in 1896.</p>
+<p>Later, Gauss found an even better approximation for the prime counting function, called the logarithmic integral Li(<em>x</em>). <span class="lgrey">(The &#8220;curly line&#8221; denotes an integral, but it is not important to understand what that means to continue with this article.)</span></p>
+<p class="centre"><img src="resources/Prime_Numbers/Li.png" width="208" height="38" alt="Li(x)"></p>
+<h2>The Riemann Hypothesis</h2>
+
+<p>The function Li(<em>x</em>) gives a very good estimate for the approximate size of the prime counting function, but there still is an error. It is never <em>exactly</em> right, and we don&#8217;t really know what will happen to the error for very large numbers. What would be really nice is if this error is completely random: the error is never too big and there are no significant differences without good reason. <span class="lgrey">(Formally, the absolute difference between Li(<em>x</em>) and &pi;(<em>x</em>) is bounded by <em>c</em> <span class="radic">&radic;</span><span class="sqrt" style="border-color: #AAA;"><em>x</em></span> log(<em>x</em>) for some constant <em>c</em>.)</span></p>
+<p>Mathematicians have shown that this is true exactly if the <strong>Riemann Hypothesis</strong> is true,  the most famous unsolved problem in mathematics. It was proposed by the German mathematician Bernhard Riemann (1826 &#8211; 1866) and it is often written in the following form:</p>
+<p class="thereom">The real part of any non-trivial zero of the Riemann zeta function is 1/2.</p>
+<p>Let us look at the different parts of this hypothesis in more detail. Zeta &#8211; <em>&zeta;</em> &#8211; is the Greek letter for Z, and the Zeta function is  a mathematical function which consists of the <a href="Functions_and_Series">sum</a> of infinitely many terms. And even though we are adding infinitely many terms, the sum may just be a finite value (as long as the terms keep getting smaller):</p>
+<p class="centre"><img src="resources/Prime_Numbers/zeta.png" width="231" height="33" alt="riemann zeta function"></p>
+<p>Like other functions, the Zeta function can have zeros, where <em>&zeta;</em>(<em>s</em>) = 0 for particular values of <em>s</em>. Since the Zeta function is defined for <a href="Real_Irrational_Imaginary">complex numbers</a> <span class="lgrey">(they are a combination of the normal (real) numbers and &#8220;imaginary&#8221; numbers)</span>, the zeros may also be complex. But we are only interested in their real part.</p>
+<p>It is not hard <span class="lgrey">(at least when you have studied mathematics at university)</span> to classify <em>some</em> of the zeros. The Riemann hypothesis states that all the <em>other</em> zeros (of which there are infinitely many) must have real part 1/2.</p>
+<p>It seems unlikely that the Riemann hypothesis, which is  about functions and zeros, can be related to the distribution of Prime numbers. But this is only one of the mysterious and surprising results in mathematics.</p>
+
+
+
+<h2>The Millennium Prize Problems</h2>
+
+<p>Unfortunately the Riemann hypothesis proved to be very hard, and nobody so far has managed to even make a significant attempt at a proof. So &#8211; mathematicians started to check it in many cases, and the first 10 000 000 000 000 do indeed have real part 1/2. But since there are infinitely many zeros, this doesn&#8217;t even come close to a proof.</p>
+<div class="rbox"><img src="resources/Prime_Numbers/fields.png" width="220" height="220" alt="fields medal">
+  <p class="caption">The Fields Medal is considered the <br>
+  highest award in mathematics. <br>
+</p></div>
+<p>The Riemann hypothesis is linked to many other open problems in mathematics, which is why it is often considered one the most important unsolved problem in mathematics. However there are no  practical consequences of knowing whether it is true or not.</p>
+<p>There is a different reason for trying to prove it: in 2000 the Clay Mathematica Institute named it one of six <strong>Millennium Prize Problems</strong> and promised $1 000 000 any mathematician who proves one of them.</p>
+<p>Only one of the Millennium Problems has been solved so far: the Poincar&eacute; conjecture by the Russian mathematician Grigori Perelman. (And it so happens that he actually declined the award!) Since many of the greatest mathematicians since Riemann himself have tried to prove his hypothesis, and failed, it is unlikely that we will find out any time soon whether it is true or not&#8230;    </p>
+
+<!--(bake templates/bottom.html)-->
