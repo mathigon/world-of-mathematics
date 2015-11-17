@@ -1,3 +1,5 @@
+![](http://mathigon.org/github.jpg)
+
 # The World of Mathematics
 
 Dive into a colourful and engaging world, discovering some of the most exciting and curious mathematical ideas. Using interactive games, animations and countless illustrations, advanced mathematics becomes accessible to both children and adults.
