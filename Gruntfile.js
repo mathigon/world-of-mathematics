@@ -73,7 +73,7 @@ module.exports = function(grunt) {
         buildcontrol: { app: {
             options: {
                 dir: 'build',
-                branch: 'gh_pages',
+                branch: 'gh-pages',
                 commit: true,
                 push: true,
                 message: 'Built %sourceName% from commit %sourceCommit% on branch %sourceBranch%',
