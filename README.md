@@ -20,7 +20,7 @@ Corrections, improvements and additions are always welcome. Simply fork this rep
 
 ## Credits
 
-Created by Philipp Legner.  
-&copy; Mathigon, 2015
+Created by Philipp Legner.
+(c) 2016 Mathigon
 
 For more details, see http://world.mathigon.org/Credits

@@ -924,7 +924,7 @@ article.render = function(url){
     var adBox = text.getElementsByClassName('ad-box')[0];
     var adHide = text.getElementsByClassName('ad-hide')[0];
 
-    adHide.addEventListener('click', function() {
+    if (adHide) adHide.addEventListener('click', function() {
         adBox.parentNode.removeChild(adBox);
     });
 

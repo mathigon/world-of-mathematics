@@ -9,7 +9,7 @@ module.exports = function(grunt) {
     grunt.initConfig({
 
         pkg: grunt.file.readJSON('package.json'),
-        banner: '/* (c) Mathigon, */\n',
+        banner: '/* (c) 2016 Mathigon */\n',
 
         clean: ['build'],
 
@@ -70,21 +70,22 @@ module.exports = function(grunt) {
             }]
         }},
 
-        'ftp-deploy': { app: {
-            auth: {
-                host: 'mathigon.org',
-                port: 21,
-                authKey: 'mathigon'
-            },
-            src: 'build',
-            dest: '/public_html/world',
-            exclusions: []
+        buildcontrol: { app: {
+            options: {
+                dir: 'build',
+                branch: 'gh_pages',
+                commit: true,
+                push: true,
+                message: 'Built %sourceName% from commit %sourceCommit% on branch %sourceBranch%',
+                remote: 'git@github.com:Mathigon/world-of-mathematics.git'
+            }
         }}
+
     });
 
     // Dynamically load npm tasks
     require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
 
     grunt.registerTask('default', ['clean', 'uglify', 'cssmin', 'bake', 'htmlmin', 'copy']);
-    grunt.registerTask('deploy', ['ftp-deploy']);
+    grunt.registerTask('deploy', ['default', 'buildcontrol']);
 };
