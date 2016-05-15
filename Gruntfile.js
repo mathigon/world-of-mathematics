@@ -76,6 +76,7 @@ module.exports = function(grunt) {
                 branch: 'gh-pages',
                 commit: true,
                 push: true,
+                force: true,
                 message: 'Built %sourceName% from commit %sourceCommit% on branch %sourceBranch%',
                 remote: 'git@github.com:Mathigon/world-of-mathematics.git'
             }
