@@ -437,29 +437,12 @@ slider.setup = function(){
     for( var i=1; i<topIcons.length; ++i )
         slider.clickevent( topIcons[i], (function(x){ return function(){ slider.topIconOpen(topIcons[x]); } })(i) );
 
-    $( ".topIconFrame" ).on( "click touchstart touchend", function(e){
-        e.stopPropagation();
-    } );
-    $( ".topIconFrame" ).on( "touchmove mousewheel DOMMouseScroll", function(e){
-        e.stopPropagation();
-        e.preventDefault();
-    } );
-
     slider.clickevent( slider.container, slider.iconBoxClose );
 
-    var ih = document.getElementById('iconHelp').children[1].children[1];
-    ih.addEventListener('mousewheel', function(e){ e.stopPropagation(); }, false)
-    ih.addEventListener('touchmove', function(e){ e.stopPropagation(); }, false)
-    ih.addEventListener('touchstart', function(e){
-        startTopScroll = ih.scrollTop;
-        if(startTopScroll <= 0) ih.scrollTop = 1;
-        if(startTopScroll + ih.offsetHeight >= ih.scrollHeight) ih.scrollTop = ih.scrollHeight - ih.offsetHeight - 1;
-        e.stopPropagation();
-    }, false);
 
     // FULL SCREEN BUTTON ---------------------------------------------------------
 
-    slider.toggleFullScreen = function(){
+    slider.toggleFullScreen = function() {
         if( !document.fullscreenElement && !document.mozFullScreenElement && !document.webkitFullscreenElement ){
                  if (document.body.requestFullscreen      ) document.body.requestFullscreen();
             else if (document.body.msRequestFullScreen    ) document.body.msRequestFullScreen();
@@ -472,7 +455,7 @@ slider.setup = function(){
             else if (document.webkitCancelFullScreen) document.webkitCancelFullScreen();
             document.getElementById("iconFull").className = 'topIcon';
         }
-    }
+    };
 
     var b = document.getElementById("body");
 
@@ -480,16 +463,12 @@ slider.setup = function(){
         slider.clickevent( document.getElementById('iconFull'), slider.toggleFullScreen );
     } else {
         document.getElementById("iconFull").style.display = "none";
-        browser.html.className += ' noFullScreen';
     }
 
     // SOCIAL BUTTONS ----------------------------------------------------
 
     // Tweet Button
     !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
-
-    // Stumble Upon
-    (function() { var li = document.createElement('script'); li.type = 'text/javascript'; li.async = true; li.src = ('https:' == document.location.protocol ? 'https:' : 'http:') + '//platform.stumbleupon.com/1/widgets.js'; var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(li, s); })();
 
     // Google+ Button
     (function() { var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true; po.src = 'https://apis.google.com/js/plusone.js'; var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s); })();
@@ -670,9 +649,9 @@ article.close = function(){
             slider.setup();
             slider.loaded = 1;
         });
-    };
+    }
 
-}
+};
 
 
 
@@ -701,9 +680,6 @@ article.load = function( url ){
         if (xhr.status == 200) {
             var doc = document.implementation.createHTMLDocument("example");
             doc.documentElement.innerHTML = xhr.responseText;
-            
-            var ad = doc.getElementsByClassName('ad-box')[0];
-            ad.parentNode.removeChild(ad);
 
             abox.appendChild( document.adoptNode(doc.getElementsByClassName('tBody')[0]) );
         } else {
@@ -717,7 +693,7 @@ article.load = function( url ){
 
     xhr.open("GET", '/'+url, true);
     xhr.send();
-}
+};
 
 // ================================================================================================
 
@@ -923,6 +899,7 @@ article.render = function(url){
 
     var adBox = text.getElementsByClassName('ad-box')[0];
     var adHide = text.getElementsByClassName('ad-hide')[0];
+    setTimeout(function() { (window.adsbygoogle = window.adsbygoogle || []).push({}); });
 
     if (adHide) adHide.addEventListener('click', function() {
         adBox.parentNode.removeChild(adBox);
