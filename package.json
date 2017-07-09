@@ -7,6 +7,10 @@
     "type": "git",
     "url": "https://github.com/Mathigon/world-of-mathematics.git"
   },
+  "scripts": {
+    "start": "grunt && cd build && python -m SimpleHTTPServer 8080",
+    "deploy": "grunt && grunt buildcontrol"
+  },
   "devDependencies": {
     "grunt": "~0.4.1",
     "grunt-bake": "~0.3.12",

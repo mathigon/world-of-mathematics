@@ -88,5 +88,4 @@ module.exports = function(grunt) {
     require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
 
     grunt.registerTask('default', ['clean', 'uglify', 'cssmin', 'bake', 'htmlmin', 'copy']);
-    grunt.registerTask('deploy', ['default', 'buildcontrol']);
 };
