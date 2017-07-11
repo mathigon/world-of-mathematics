@@ -333,30 +333,6 @@ slider.backgrounds = function(){
     }
 }
 
-slider.iconBoxClose = function() {
-    if( slider.iconBox ) {
-        var x = $('.topIcon.on');
-        x.removeClass('on');
-        setTimeout( function(){ x.find('.topIconFrame').css('display','none') }, 200 )
-        slider.iconBox = 0;
-    }
-}
-
-slider.topIconOpen = function(icon){
-    t = $(icon);
-    s = t.parent()
-    u = s.find('.topIconFrame');
-    q = s.hasClass('on');
-
-    slider.iconBoxClose();
-
-    if( !q && u[0] ) {
-        u.css('display','block');
-        setTimeout( function(){ s.addClass('on') }, 5 );
-        slider.iconBox = 1;
-    }
-}
-
 slider.setup = function(){
 
     slider.loaded = 1;
@@ -429,50 +405,6 @@ slider.setup = function(){
             }; })(contents[i]), false);
         }
     }
-
-    // ICON BOXES ----------------------------------------------------
-
-    topIcons = document.getElementsByClassName('iconImg');
-
-    for( var i=1; i<topIcons.length; ++i )
-        slider.clickevent( topIcons[i], (function(x){ return function(){ slider.topIconOpen(topIcons[x]); } })(i) );
-
-    slider.clickevent( slider.container, slider.iconBoxClose );
-
-
-    // FULL SCREEN BUTTON ---------------------------------------------------------
-
-    slider.toggleFullScreen = function() {
-        if( !document.fullscreenElement && !document.mozFullScreenElement && !document.webkitFullscreenElement ){
-                 if (document.body.requestFullscreen      ) document.body.requestFullscreen();
-            else if (document.body.msRequestFullScreen    ) document.body.msRequestFullScreen();
-            else if (document.body.mozRequestFullScreen   ) document.body.mozRequestFullScreen();
-            else if (document.body.webkitRequestFullscreen) document.body.webkitRequestFullscreen(Element.ALLOW_KEYBOARD_INPUT);
-            document.getElementById("iconFull").className = 'topIcon on1';
-        } else {
-                 if (document.cancelFullScreen)       document.cancelFullScreen();
-            else if (document.mozCancelFullScreen)    document.mozCancelFullScreen();
-            else if (document.webkitCancelFullScreen) document.webkitCancelFullScreen();
-            document.getElementById("iconFull").className = 'topIcon';
-        }
-    };
-
-    var b = document.getElementById("body");
-
-    if( b.mozRequestFullScreen || b.webkitRequestFullScreen || b.RequestFullScreen || b.msRequestFullscreen ){
-        slider.clickevent( document.getElementById('iconFull'), slider.toggleFullScreen );
-    } else {
-        document.getElementById("iconFull").style.display = "none";
-    }
-
-    // SOCIAL BUTTONS ----------------------------------------------------
-
-    // Tweet Button
-    !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
-
-    // Google+ Button
-    (function() { var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true; po.src = 'https://apis.google.com/js/plusone.js'; var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s); })();
-
 }
 
 
@@ -493,6 +425,11 @@ article.elements = article.isOpen ? [ document.getElementById("A1") ] : [];
 
 article.append = function( url, where ){
     url = url.replace('.html','');
+
+    if (url == 'Polygons_and_Polyhedra') return window.location.href = 'https://mathigon.org/course/polygons-and-polyhedra';
+    if (url == 'Prime_Numbers') return window.location.href = 'https://mathigon.org/course/divisibility-and-primes';
+    if (url == 'Probability') return window.location.href = 'https://mathigon.org/course/probability';
+    if (url == 'Graph_Theory') return window.location.href = 'https://mathigon.org/course/graphs-and-networks';
 
     article.elements[article.count-1] = document.createElement('article');
     var a = article.elements[article.count-1];
@@ -541,11 +478,10 @@ article.events = function(a,url,i){
     if(i<31) new touchClick( a.children[2].children[i?1:0], function(e){e.stopPropagation(); article.switch( titles[i+1]);} );
 }
 
-article.open = function( url ){
+article.open = function(url) {
     url = url.replace('.html','');
 
     slider.slideBack();
-    slider.iconBoxClose();
 
     ++article.count;
     article.isOpen = 1;
@@ -899,7 +835,10 @@ article.render = function(url){
 
     var adBox = text.getElementsByClassName('ad-box')[0];
     var adHide = text.getElementsByClassName('ad-hide')[0];
-    setTimeout(function() { (window.adsbygoogle = window.adsbygoogle || []).push({}); });
+    
+    if (adBox) setTimeout(function() { 
+        (window.adsbygoogle = window.adsbygoogle || []).push({});
+    });
 
     if (adHide) adHide.addEventListener('click', function() {
         adBox.parentNode.removeChild(adBox);

@@ -4,6 +4,29 @@
 /* =============================================================================== */
 
 
+
+a.redirect {
+    display: block;
+    background: #b30469;
+    color: white;
+    text-align: center;
+    border-radius: 6px;
+    padding: 8px 20px;
+    width: 240px;
+    margin: 0 auto;
+    font-family: futura-pt,Futura Std,Futura,Helvetica,sans-serif;
+    font-size: 18px;
+    letter-spacing: 1px;
+}
+
+.legacy {
+    height: 0;
+    overflow: hidden;
+}
+
+
+
+
 .ad-caption {
     font-size: 12px;
     color: #AAA;
@@ -34,18 +57,28 @@
     top: 0;
     left: 0;
     width: 100%;
-    height: 30px;
+    height: 40px;
     background: #181824;
     z-index: 1000;
 }
 
 #m-logo {
     display: block;
-    background: url(/images/logo-small.png);
-    width: 110px;
-    height: 30px;
+    background: url(/images/mathigon.png);
+    width: 140px;
+    height: 40px;
     margin: 0 0 0 10px;
-    background-size:110px 30px;
+    background-size: 140px 40px;
+}
+
+#m-social {
+    position: absolute;
+    right: 10px;
+    top: 9px;
+}
+
+@media screen and (max-width: 400px) {
+    #m-social > iframe:last-child { display: none; }
 }
 
 
@@ -109,7 +142,7 @@ noscript > p, #browserWarning > p { text-align: center; margin: 0; }
 /* =============================== CHAPTER SLIDER ================================ */
 
 #chapters {
-    top: 30px;
+    top: 40px;
     left: 0;
     right: 0;
     bottom: 0;
@@ -134,83 +167,6 @@ noscript > p, #browserWarning > p { text-align: center; margin: 0; }
 #c3 { z-index: 2; /*background-image: url(../images/backgroundsL/logic_900.jpg);*/ }
 #c4 { z-index: 1; /*background-image: url(../images/backgroundsL/games_900.jpg);*/ }
 #c5 {             /*background-image: url(../images/backgroundsL/matter_900.jpg);*/ }
-
-/* =============================================================================== */
-
-#topIcons {
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 104px;
-    height: 52px;
-    z-index: 10;
-    opacity: 1;
-    transition: opacity .5s;
-}
-.reading #topIcons { opacity: 0 }
-
-.topIcon {
-    position: relative;
-    float: right;
-    width: 48px;
-    height: 48px;
-    margin: 4px 4px 0 0;
-}
-
-.iconImg {
-    width: 48px;
-    height: 48px;
-    background-image: url(../images/layout.png);
-    opacity: 0.7;
-    cursor: pointer;
-    transition: opacity .2s;
-}
-.iconImg:hover, .on .iconImg { opacity: 1; }
-
-#iconFull     .iconImg { background-position: -192px 0; }
-#iconFull.on1 .iconImg { background-position: -240px 0; }
-#iconShare    .iconImg { background-position:      0 0; }
-
-.topIconFrame {
-    position: absolute;
-    top: 44px;
-    width: 320px;
-    padding-top: 10px;
-    display: none;
-    opacity: 0;
-    transform-origin: top;
-    transition: transform .2s, opacity .2s;
-}
-
-#iconShare .topIconFrame { left:  -190px; transform: scale(0.5) translateX(95px); }
-#iconShare .topIconArrow { left: 200px; }
-
-.topIcon.on .topIconFrame {
-    opacity: 1;
-    transform: none !important;
-}
-
-.topIconArrow {
-    position: absolute;
-    z-index: 10;
-    top: 0px;
-    width: 0;
-    height: 0;
-    border-left: 10px solid transparent;
-    border-right: 10px solid transparent;
-    border-bottom: 10px solid rgba(255,255,255,0.9);
-}
-
-.topIconBox {
-    background: rgba(255,255,255,0.9);
-    padding: 15px;
-    max-height: 360px;
-    border-radius: 6px;
-    box-shadow: 0 3px 6px rgba(0,0,0,0.6);
-}
-
-#socialtable td { text-align: center; }
-
 
 
 /* =============================================================================== */
@@ -463,7 +419,7 @@ article.prev {
 .abox {
     width: 840px;
     max-width: 90%;
-    min-height: 100%;
+    /* min-height: 100%; */
     margin: 0 auto 0 auto;
     background: #FFF;
     position: relative;
@@ -665,12 +621,12 @@ header:hover .tocIcon { opacity: 0; }
     .bottomBar { margin: 0; max-width: 100%; }
 
     .topBarA {
-        height: 30px;
+        height: 40px;
         margin: 0;
         max-width: 100%;
     }
     .topBarBack { display: none; }
-    .topBarClose { position: absolute; right: 6px; top: 30px; z-index: 100; opacity: 1; }
+    .topBarClose { position: absolute; right: 6px; top: 40px; z-index: 100; opacity: 1; }
 
     .toc, .tocIcon { display: none; }
 }
