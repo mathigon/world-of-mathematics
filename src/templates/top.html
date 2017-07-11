@@ -7,7 +7,7 @@
 
   <body id="body">
 
-    <div id="m-header"><a id="m-logo" href="https://mathigon.org" target="_blank"></a></div>
+    <!--(bake header.html)-->
 
     <div id="chapters" class="on0"></div>
     <!--[if lt IE 10]><div id="browserWarning"><p>You are using an outdated browser. Why not try <a href="https://www.google.com/chrome/" target="_blank">Google Chrome</a>?</p></div><![endif]-->
@@ -23,6 +23,7 @@
         <header style="background-image: url(images/headers/{{id}}.jpg);" data-url="{{id}}"></header>
         <div class="tBody">
 
+          <!--(bake-start _if="!noAd")-->
           <div class="ad-box">
             <div class="ad-caption sansSerif">Advertising <span class="ad-hide">&times;</span></div>
             <ins class="adsbygoogle"
@@ -31,3 +32,4 @@
                  data-ad-slot="4704777412"
                  data-ad-format="auto"></ins>
           </div>
+          <!--(bake-end)-->
