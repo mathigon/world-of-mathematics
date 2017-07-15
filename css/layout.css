@@ -78,7 +78,7 @@ a.redirect {
 }
 
 @media screen and (max-width: 400px) {
-    #m-social > iframe:last-child { display: none; }
+    #m-social > iframe:first-child { display: none; }
 }
 
 
