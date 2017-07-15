@@ -419,7 +419,7 @@ article.prev {
 .abox {
     width: 840px;
     max-width: 90%;
-    /* min-height: 100%; */
+    min-height: 100%;
     margin: 0 auto 0 auto;
     background: #FFF;
     position: relative;
