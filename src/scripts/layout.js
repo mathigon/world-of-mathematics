@@ -351,14 +351,12 @@ slider.setup = function(){
 
     // CHAPTER ICONS ----------------------------------------------------
 
-    var icons  = document.getElementsByClassName('icon');
-    var iconsN = icons.length;
-
-    for( var i=0; i<iconsN; ++i ){
-        var url = icons[i].getAttribute('href');
-        icons[i].style.backgroundImage = 'url(images/icons' + browser.imgExt + '/' + url + '.jpg?1)';
-        slider.clickevent( icons[i], (function(x){ return function(){ article.open(x); } })(url) );
-    }
+    var icons = Array.prototype.slice.call(document.getElementsByClassName('icon'));
+    icons.forEach(function(icon) {
+        var url = icon.dataset.icon || icon.getAttribute('href');
+        icon.style.backgroundImage = 'url(images/icons' + browser.imgExt + '/' + url + '.jpg?1)';
+        if (!icon.target) slider.clickevent(icon, function() { article.open(url); });
+    });
 
     // KEYBOARD ARROW EVENTS ----------------------------------------------------
 
